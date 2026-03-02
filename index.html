@@ -1,35 +1,91 @@
-<div class="min-h-screen w-full p-8 md:p-20" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed;">
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <header class="mb-20 text-center">
-    <h1 class="text-6xl font-black tracking-tighter text-white drop-shadow-[0_0_25px_rgba(110,59,255,0.6)]">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
-    <p class="mt-4 font-bold uppercase tracking-[0.4em] text-white/40">Exclusive Digital Giveaways</p>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit's Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; }
+        .glass-card:hover { transform: translateY(-10px); border-color: rgba(110, 59, 255, 0.4); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+    </style>
+</head>
+<body class="p-6 md:p-20 text-white">
 
-  <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-    
-    <div class="group relative flex min-h-[400px] flex-col justify-between rounded-[60px] border border-white/10 bg-white/[0.03] p-10 shadow-2xl backdrop-blur-[40px] transition-all duration-500 hover:-translate-y-4 hover:bg-white/[0.06]">
-      <div class="text-3xl font-black text-white">Surfshark VPN</div>
-      <div class="mt-8 space-y-4">
-        <button class="w-full rounded-3xl border border-white/10 bg-white/5 py-4 font-bold text-white/80 transition hover:bg-white/10">Get it FREE</button>
-        <a href="details.html?product=surfshark" class="block w-full text-center rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-4 font-black text-white shadow-[0_0_20px_rgba(110,59,255,0.4)]">Get a Private Account</a>
-      </div>
+    <header class="mb-20 text-center">
+        <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
+        <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40">Exclusive Digital Giveaways</p>
+    </header>
+
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+            <h2 class="text-3xl font-black">Surfshark VPN</h2>
+            <div class="space-y-4">
+                <button onclick="openFree('Surfshark', 'surf_user@free.com', 'pass123')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold">Get it FREE</button>
+                <a href="details.html?product=surfshark" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+            <h2 class="text-3xl font-black">PIA VPN</h2>
+            <div class="space-y-4">
+                <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold">Get it FREE</button>
+                <a href="details.html?product=pia" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px] border-[#6e3bff]/30 bg-[#6e3bff]/5">
+            <h2 class="text-3xl font-black text-[#a334ff]">Proton <span class="block text-sm opacity-50 text-white">(Shared)</span></h2>
+            <div class="pt-10">
+                <a href="details.html?product=proton_shared" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+            <h2 class="text-3xl font-black text-yellow-500">Proton <span class="block text-sm opacity-50 text-white">(Personal)</span></h2>
+            <div class="pt-10">
+                <a href="details.html?product=proton_personal" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+            <h2 class="text-3xl font-black">YouTube Premium</h2>
+            <div class="pt-10">
+                <a href="details.html?product=yt_premium" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+            <h2 class="text-3xl font-black text-red-500">YT Renewable</h2>
+            <div class="pt-10">
+                <a href="details.html?product=yt_renewable" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+            </div>
+        </div>
     </div>
 
-    <div class="group relative flex min-h-[400px] flex-col justify-between rounded-[60px] border border-[#6e3bff]/30 bg-[#6e3bff]/10 p-10 shadow-2xl backdrop-blur-[40px] transition-all duration-500 hover:-translate-y-4">
-      <div class="text-3xl font-black text-[#a334ff]">Proton <span class="block text-sm font-medium text-white/50">(Shared)</span></div>
-      <div class="mt-8">
-        <a href="details.html?product=proton_shared" class="block w-full text-center rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-4 font-black text-white shadow-[0_0_20px_rgba(110,59,255,0.4)]">Get a Private Account</a>
-      </div>
+    <div id="freeModal" class="modal" onclick="closeModal()">
+        <div class="max-w-md w-full rounded-[50px] border border-white/20 bg-white/5 p-12 text-center backdrop-blur-3xl" onclick="event.stopPropagation()">
+            <h3 class="text-3xl font-black mb-6">🎁 Free Access</h3>
+            <div class="bg-black/40 p-6 rounded-3xl font-mono text-left border border-white/5 space-y-2">
+                <p class="text-purple-400">Service: <span id="freeName" class="text-white"></span></p>
+                <p class="text-purple-400">ID: <span id="freeId" class="text-white"></span></p>
+                <p class="text-purple-400">Pass: <span id="freePass" class="text-white"></span></p>
+            </div>
+            <button onclick="closeModal()" class="mt-8 text-white/40 underline">Close</button>
+        </div>
     </div>
 
-    <div class="group relative flex min-h-[400px] flex-col justify-between rounded-[60px] border border-white/10 bg-white/[0.03] p-10 shadow-2xl backdrop-blur-[40px] transition-all duration-500 hover:-translate-y-4">
-      <div class="text-3xl font-black text-white">YouTube Premium</div>
-      <div class="mt-8">
-        <a href="details.html?product=yt_premium" class="block w-full text-center rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-4 font-black text-white shadow-[0_0_20px_rgba(110,59,255,0.4)]">Get a Private Account</a>
-      </div>
-    </div>
-
-    </div>
-</div>
+    <script>
+        function openFree(name, id, pass) {
+            document.getElementById('freeName').innerText = name;
+            document.getElementById('freeId').innerText = id;
+            document.getElementById('freePass').innerText = pass;
+            document.getElementById('freeModal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
+    </script>
+</body>
+</html>
 
