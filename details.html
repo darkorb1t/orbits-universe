@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a);">
+    
+    <div class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-12 text-center shadow-2xl backdrop-blur-[60px] text-white">
+        <h3 id="pName" class="text-4xl font-black mb-4 tracking-tight">Loading...</h3>
+        <p id="pDesc" class="text-white/60 mb-8 px-4 leading-relaxed">Premium private subscription with full access.</p>
+        
+        <div class="my-8 rounded-[35px] bg-[#6e3bff]/20 py-10 text-6xl font-black drop-shadow-[0_0_15px_rgba(110,59,255,0.4)]">
+            <span id="pPrice">--</span>৳
+        </div>
+        
+        <a id="tgLink" href="#" target="_blank" class="block w-full rounded-3xl bg-white py-5 font-black text-[#6e3bff] text-xl transition hover:scale-105 active:scale-95 shadow-xl">
+            Order on Telegram
+        </a>
+        
+        <button onclick="history.back()" class="mt-8 text-white/40 hover:text-white transition font-medium">← Go Back</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get('product');
+
+        const data = {
+            'surfshark': { 
+                name: 'Surfshark VPN', 
+                price: '28', 
+                desc: 'High-speed shared account with global servers for secure browsing.',
+                msg: 'Hello Orbit! I want to take Surfshark VPN (28tk).'
+            },
+            'pia': { 
+                name: 'PIA VPN', 
+                price: '28', 
+                desc: 'Ultimate anonymity and military-grade encryption for security pros.',
+                msg: 'Hello Orbit! I want to take PIA VPN (28tk).'
+            },
+            'proton_shared': { 
+                name: 'Proton Shared', 
+                price: '30', 
+                desc: 'Swiss-based security with 30 days shared premium access.',
+                msg: 'Hello Orbit! I want to take Proton VPN Shared (30tk).'
+            },
+            'proton_personal': { 
+                name: 'Proton Personal', 
+                price: '80', 
+                desc: 'Full private account activated on your own personal email for 30 days.',
+                msg: 'Hello Orbit! I want to take Proton VPN Personal (80tk).'
+            },
+            'yt_premium': { 
+                name: 'YouTube Premium', 
+                price: '25', 
+                desc: 'Ad-free experience with Background Play. Please send your email after clicking order.',
+                msg: 'Hello Orbit! I want YouTube Premium (25tk). My email is: '
+            },
+            'yt_renewable': { 
+                name: 'YT Renewable', 
+                price: '80', 
+                desc: 'Monthly renewable premium on your own account. Ad-free music included.',
+                msg: 'Hello Orbit! I want YouTube Premium Renewable (80tk). My email is: '
+            }
+        };
+
+        if(data[product]) {
+            const item = data[product];
+            document.getElementById('pName').innerText = item.name;
+            document.getElementById('pPrice').innerText = item.price;
+            document.getElementById('pDesc').innerText = item.desc;
+            
+            // Telegram URL with Message Fix
+            const username = 'Aedm1n'; // Updated Username
+            const encodedMsg = encodeURIComponent(item.msg);
+            document.getElementById('tgLink').href = `https://t.me/${username}?text=${encodedMsg}`;
+        } else {
+            document.getElementById('pName').innerText = "Product Not Found";
+            document.getElementById('pDesc').innerText = "Please return to the home page.";
+        }
+    </script>
+</body>
+  </html>
+  
