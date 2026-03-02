@@ -25,7 +25,6 @@
 
         <div class="space-y-3 text-left">
             <input id="trxId" type="text" maxlength="10" placeholder="Enter 10-digit TrxID (e.g. DC21LVVOIL)" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition uppercase">
-            
             <input id="userContact" type="text" placeholder="Email or @TelegramUsername" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
             
             <div id="captchaBox" class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -45,11 +44,9 @@
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
-        // BOT CONFIGURATION
         const botToken = "7721560798:AAEWRqAYWWlKvjEZNrU-O4lvozMyoXYKXiM"; 
         const chatId = "6250222523"; 
 
-        // Captcha Logic
         let capRes;
         function genCap() {
             const a = Math.floor(Math.random() * 10) + 1;
@@ -60,10 +57,10 @@
         genCap();
 
         const data = {
-            'surfshark': { name: 'Surfshark VPN', price: '28', desc: 'High-speed shared account with global servers.' },
+            'surfshark': { name: 'Surfshark VPN', price: '28', desc: 'Premium personal account with full private access.' },
             'pia': { name: 'PIA VPN', price: '28', desc: 'Ultimate anonymity and military-grade encryption.' },
-            'proton_shared': { name: 'Proton Shared', price: '30', desc: 'Swiss-based security with 30 days shared access.' },
-            'proton_personal': { name: 'Proton Personal', price: '80', desc: 'Private account on your own email for 30 days.' },
+            'proton_shared': { name: 'Proton Shared', price: '30', desc: '30 Days shared access with Swiss security.' },
+            'proton_personal': { name: 'Proton Personal', price: '80', desc: 'Full private account. I will provide a new Mail ID & Password.' },
             'yt_premium': { name: 'YouTube Premium', price: '25', desc: 'Ad-free experience with Background Play (Family Invite).' },
             'yt_renewable': { name: 'YT Renewable', price: '80', desc: 'Monthly renewable premium on your own account.' }
         };
@@ -81,25 +78,18 @@
             const capIn = document.getElementById('captchaInput').value;
             const btn = document.getElementById('sBtn');
 
-            // 1. Basic Validation
             if(!trx || !contact || !capIn) return alert("All fields are required!");
-
-            // 2. TrxID Length Validation (bKash is 10 chars)
             if(trx.length !== 10) return alert("bKash TrxID must be exactly 10 characters!");
-
-            // 3. Contact Validation (Email or @User)
             const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
             const isTG = contact.startsWith('@') && contact.length > 2;
             if(!isEmail && !isTG) return alert("Enter a valid Email or @TelegramUsername!");
 
-            // 4. Captcha Validation
             if(parseInt(capIn) !== capRes) {
                 alert("Wrong Captcha result!");
                 genCap();
                 return;
             }
 
-            // 5. Spam Protection: Disable Button
             btn.disabled = true;
             btn.innerText = "Processing...";
 
@@ -109,24 +99,30 @@
             const botText = `🚀 NEW ORDER!\n\nProduct: ${pName}\nAmount: ${pPrice}৳\nTrxID: ${trx}\nContact: ${contact}`;
             const botUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(botText)}`;
 
-            fetch(botUrl)
+                        fetch(botUrl)
             .then(res => {
                 if(res.ok) {
-                    alert("Order Submitted! Confirming on Telegram.");
-                    const clientMsg = `Hi! I ordered ${pName} (${pPrice}tk). TrxID: ${trx}`;
-                    window.location.href = `https://t.me/Aedm1n?text=${encodeURIComponent(clientMsg)}`;
+                    alert("Order Submitted! Redirecting to WhatsApp for confirmation.");
+                    
+                    // WhatsApp Redirect (Using your number: 01611026722)
+                    const myNumber = "8801611026722"; 
+                    const clientMsg = `Hi Orbit! I have submitted an order for ${pName} (${pPrice}tk). My TrxID is: ${trx}`;
+                    
+                    window.location.href = `https://wa.me/${myNumber}?text=${encodeURIComponent(clientMsg)}`;
                 } else {
-                    alert("Bot Error! Contact @Aedm1n directly.");
+                    alert("Bot Error! Please contact directly on WhatsApp.");
+                    window.location.href = `https://wa.me/8801611026722`;
                     btn.disabled = false;
                     btn.innerText = "Submit Order";
                 }
             })
             .catch(() => {
-                alert("Network failure!");
+                alert("Network failure! Try again.");
                 btn.disabled = false;
                 btn.innerText = "Submit Order";
             });
         }
     </script>
 </body>
-  </html>
+</html>
+
