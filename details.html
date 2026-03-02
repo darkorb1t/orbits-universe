@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Order - Orbit</title>
+    <title>Order - Orbit's Universe</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-6" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a);">
@@ -12,35 +12,36 @@
         <h3 id="pName" class="text-3xl font-black mb-2 tracking-tight">Loading...</h3>
         <p id="pDesc" class="text-white/60 mb-6 px-4 text-sm leading-relaxed">Premium private subscription.</p>
         
-        <div class="mb-6 rounded-[35px] bg-[#6e3bff]/20 py-6 text-5xl font-black shadow-inner">
+        <div class="mb-6 rounded-[35px] bg-[#6e3bff]/20 py-6 text-5xl font-black drop-shadow-[0_0_15px_rgba(110,59,255,0.4)]">
             <span id="pPrice">--</span>৳
         </div>
 
         <div class="mb-6 p-5 rounded-[30px] bg-black/30 border border-white/10 text-left">
-            <p class="text-[10px] opacity-50 uppercase font-black mb-2 tracking-widest">Payment Instruction</p>
+            <p class="text-[10px] opacity-50 uppercase font-black mb-2 tracking-widest text-purple-300">Payment Instruction</p>
             <p class="text-md font-bold mb-1">💸 bKash (Personal):</p>
             <p class="text-xl font-mono text-purple-400 font-black tracking-wider text-center py-2">01611026722</p>
+            <p class="text-[10px] mt-2 text-white/40">* Send money and enter TrxID below.</p>
         </div>
 
         <div class="space-y-3 text-left">
             <input id="trxId" type="text" placeholder="Enter bKash TrxID" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
             <input id="userContact" type="text" placeholder="Your Email or Telegram User" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
-            <button id="sBtn" onclick="sOr()" class="w-full rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-5 font-black text-white shadow-xl hover:scale-[1.02] active:scale-95 transition-all">Submit Order</button>
+            
+            <button id="sBtn" onclick="sendOrder()" class="w-full rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-5 font-black text-white shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+                Submit Order
+            </button>
         </div>
+        
         <button onclick="history.back()" class="mt-8 text-white/40 hover:text-white transition text-sm">← Go Back</button>
     </div>
 
     <script>
-        // Security Lock
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) return false; };
-
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
-        // Clean Base64 Strings
-        const _v1 = "NzcyMTU2MDc5ODpBQUVXUnFBWVdXTHZqRVpOcVUtTzRsdm96TXlvWFlLWGlN";
-        const _v2 = "NjI1MDIyMjUyMw==";
+        // CLEAN CONFIGURATION (NO OBFUSCATION)
+        const botToken = "7721560798:AAEWRqAYWWlKvjEZNrU-O4lvozMyoXYKXiM"; 
+        const chatId = "6250222523"; 
 
         const data = {
             'surfshark': { name: 'Surfshark VPN', price: '28', desc: 'High-speed shared account with global servers.' },
@@ -58,36 +59,40 @@
             document.getElementById('pDesc').innerText = item.desc;
         }
 
-        function sOr() {
-            const t = document.getElementById('trxId').value;
-            const c = document.getElementById('userContact').value;
-            const n = document.getElementById('pName').innerText;
-            const p = document.getElementById('pPrice').innerText;
+        function sendOrder() {
+            const trx = document.getElementById('trxId').value;
+            const contact = document.getElementById('userContact').value;
+            const pName = document.getElementById('pName').innerText;
+            const pPrice = document.getElementById('pPrice').innerText;
             const btn = document.getElementById('sBtn');
 
-            if(!t || !c) return alert("Please fill all info!");
+            if(!trx || !contact) {
+                alert("Please enter TrxID and Contact info!");
+                return;
+            }
 
             btn.innerText = "Sending...";
             btn.disabled = true;
 
-            const msg = `🚀 NEW ORDER!\n\nProduct: ${n}\nAmount: ${p}৳\nTrxID: ${t}\nContact: ${c}`;
-            
-            // Re-decoding here to ensure fresh token
-            const url = `https://api.telegram.org/bot${atob(_v1)}/sendMessage?chat_id=${atob(_v2)}&text=${encodeURIComponent(msg)}`;
+            const botText = `🚀 NEW ORDER!\n\nProduct: ${pName}\nAmount: ${pPrice}৳\nTrxID: ${trx}\nContact: ${contact}`;
+            const botUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(botText)}`;
 
-            fetch(url).then(res => {
+            fetch(botUrl)
+            .then(res => {
                 if(res.ok) {
                     alert("Order Submitted! Confirming on Telegram...");
-                    window.location.href = `https://t.me/Aedm1n?text=${encodeURIComponent("Hi! I ordered " + n + " (" + p + "tk). My TrxID: " + t)}`;
+                    const clientMsg = `Hi! I have submitted an order for ${pName} (${pPrice}tk). My TrxID: ${trx}`;
+                    window.location.href = `https://t.me/Aedm1n?text=${encodeURIComponent(clientMsg)}`;
                 } else {
-                    alert("Failed to send. Check your internet or contact @Aedm1n.");
-                    btn.disabled = false;
+                    alert("Failed to send order. Please contact @Aedm1n directly.");
                     btn.innerText = "Submit Order";
+                    btn.disabled = false;
                 }
-            }).catch(() => {
-                alert("Network Error!");
-                btn.disabled = false;
+            })
+            .catch(() => {
+                alert("Network error. Try again!");
                 btn.innerText = "Submit Order";
+                btn.disabled = false;
             });
         }
     </script>
