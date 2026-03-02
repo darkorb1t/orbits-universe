@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order - Orbit's Universe</title>
+    <title>Secure Order - Orbit</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-6" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a);">
     
     <div class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-8 md:p-12 text-center shadow-2xl backdrop-blur-[60px] text-white">
         <h3 id="pName" class="text-3xl font-black mb-2 tracking-tight">Loading...</h3>
-        <p id="pDesc" class="text-white/60 mb-6 px-4 text-sm leading-relaxed">Premium private subscription with full access.</p>
+        <p id="pDesc" class="text-white/60 mb-6 px-4 text-sm leading-relaxed">Premium private subscription.</p>
         
-        <div class="mb-6 rounded-[35px] bg-[#6e3bff]/20 py-6 text-5xl font-black drop-shadow-[0_0_15px_rgba(110,59,255,0.4)]">
+        <div class="mb-6 rounded-[35px] bg-[#6e3bff]/20 py-6 text-5xl font-black shadow-inner">
             <span id="pPrice">--</span>৳
         </div>
 
         <div class="mb-6 p-5 rounded-[30px] bg-black/30 border border-white/10 text-left">
             <p class="text-[10px] opacity-50 uppercase font-black mb-2 tracking-widest">Payment Instruction</p>
             <p class="text-md font-bold mb-1">💸 bKash (Personal):</p>
-            <p class="text-xl font-mono text-purple-400 font-black tracking-wider">01611026722</p>
-            <p class="text-[10px] mt-2 text-white/40">* Send money and enter TrxID below.</p>
+            <p class="text-xl font-mono text-purple-400 font-black tracking-wider text-center py-2">01611026722</p>
         </div>
 
         <div class="space-y-3 text-left">
             <input id="trxId" type="text" placeholder="Enter bKash TrxID" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
             <input id="userContact" type="text" placeholder="Your Email or Telegram User" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
-            
-            <button onclick="sendOrder()" class="w-full rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-5 font-black text-white shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
-                Submit Order
-            </button>
+            <button onclick="sendOrder()" class="w-full rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] py-5 font-black text-white shadow-xl hover:scale-[1.02] active:scale-95 transition-all">Submit Order</button>
         </div>
-        
         <button onclick="history.back()" class="mt-8 text-white/40 hover:text-white transition text-sm">← Go Back</button>
     </div>
 
     <script>
+        // Security: Right Click & Inspect Lock
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) return false; };
+
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
-        // BOT CONFIGURATION
-        const botToken = "7721560798:AAEWRqAYWWlKvjEZNrU-O4lvozMyoXYKXiM"; // Replace with your Bot Token
-        const chatId = "6250222523";     // Replace with your Chat ID
+        // Encoded Bot Configuration (Obfuscated)
+        const _0x1a2b = ["NzcyMTU2MDc5ODpBQUVXUnFBWVdXTHZqRVpOcVUtTzRsdm96TXlvWFlLWGlN", "NjI1MDIyMjUyMw=="];
+        const _tk = atob(_0x1a2b[0]);
+        const _ci = atob(_0x1a2b[1]);
 
         const data = {
             'surfshark': { name: 'Surfshark VPN', price: '28', desc: 'High-speed shared account with global servers.' },
@@ -63,25 +63,19 @@
             const trx = document.getElementById('trxId').value;
             const contact = document.getElementById('userContact').value;
             const pName = document.getElementById('pName').innerText;
+            const pPrice = document.getElementById('pPrice').innerText;
 
-            if(!trx || !contact) {
-                alert("Please enter TrxID and Contact info!");
-                return;
-            }
+            if(!trx || !contact) return alert("Please fill all info!");
 
-            const text = `🚀 NEW ORDER!\n\nProduct: ${pName}\nTrxID: ${trx}\nContact: ${contact}`;
-            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+            const botText = `🚀 NEW ORDER!\n\nProduct: ${pName}\nAmount: ${pPrice}৳\nTrxID: ${trx}\nContact: ${contact}`;
+            const url = `https://api.telegram.org/bot${_tk}/sendMessage?chat_id=${_ci}&text=${encodeURIComponent(botText)}`;
 
-            fetch(url)
-            .then(res => {
+            fetch(url).then(res => {
                 if(res.ok) {
-                    alert("Order Submitted! I will contact you soon.");
-                    window.location.href = "https://t.me/Aedm1n"; // Redirect to your profile
-                } else {
-                    alert("Error submitting order. Please contact directly.");
+                    alert("Submitted! Confirming on Telegram...");
+                    window.location.href = `https://t.me/Aedm1n?text=${encodeURIComponent("Hi! I ordered " + pName + ". TrxID: " + trx)}`;
                 }
-            })
-            .catch(() => alert("Network error. Try again!"));
+            }).catch(() => alert("Error!"));
         }
     </script>
 </body>
