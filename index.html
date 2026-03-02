@@ -10,13 +10,21 @@
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; }
         .glass-card:hover { transform: translateY(-10px); border-color: rgba(110, 59, 255, 0.4); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+        .btn-status { background: rgba(110, 59, 255, 0.1); border: 1px solid rgba(110, 59, 255, 0.3); color: #6e3bff; transition: 0.3s; }
+        .btn-status:hover { background: #6e3bff; color: white; box-shadow: 0 0 20px rgba(110, 59, 255, 0.4); }
     </style>
 </head>
 <body class="p-6 md:p-20 text-white">
 
-    <header class="mb-20 text-center">
+    <header class="mb-10 text-center">
         <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
-        <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40">Exclusive Digital Giveaways</p>
+        <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40 text-xs">Exclusive Digital Giveaways</p>
+        
+        <div class="mt-10">
+            <a href="universe.html" class="btn-status inline-block px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
+                🌐 View Live Inventory Status
+            </a>
+        </div>
     </header>
 
     <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -86,8 +94,9 @@
         }
         function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
         
-        // Disable Right Click for security
+        // Security Lock
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
 </html>
+

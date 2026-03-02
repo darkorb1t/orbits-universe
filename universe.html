@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit's Universe - Live Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; color: white; }
+        .status-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.08); transition: 0.4s; }
+        .status-card:hover { border-color: #6e3bff; transform: scale(1.02); }
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body class="p-6 md:p-20">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-16 text-center">
+            <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)]">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
+            <p class="mt-4 font-bold uppercase tracking-[0.3em] opacity-40 text-xs">Real-Time Service Inventory</p>
+        </header>
+
+        <div class="grid grid-cols-1 gap-6">
+            <div class="status-card p-8 flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <div class="text-3xl font-black">01</div>
+                    <div>
+                        <h3 class="text-2xl font-black">Surfshark VPN</h3>
+                        <p class="text-xs opacity-50 font-bold uppercase tracking-widest"><span class="dot bg-green-500 shadow-[0_0_10px_#22c55e]"></span>Active & Ready</p>
+                    </div>
+                </div>
+                <div class="mt-6 md:mt-0 flex items-center space-x-8">
+                    <div class="text-right">
+                        <p class="text-2xl font-black text-purple-400">28৳</p>
+                        <p class="text-[10px] opacity-30 uppercase font-black">Per Month</p>
+                    </div>
+                    <a href="details.html?product=surfshark" class="px-8 py-4 rounded-2xl bg-white text-[#6e3bff] font-black text-sm hover:bg-[#6e3bff] hover:text-white transition shadow-lg">ORDER</a>
+                </div>
+            </div>
+
+            <div class="status-card p-8 flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <div class="text-3xl font-black">02</div>
+                    <div>
+                        <h3 class="text-2xl font-black">YouTube Premium</h3>
+                        <p class="text-xs opacity-50 font-bold uppercase tracking-widest"><span class="dot bg-green-500 shadow-[0_0_10px_#22c55e]"></span>Family Invite Only</p>
+                    </div>
+                </div>
+                <div class="mt-6 md:mt-0 flex items-center space-x-8">
+                    <div class="text-right">
+                        <p class="text-2xl font-black text-purple-400">25৳</p>
+                        <p class="text-[10px] opacity-30 uppercase font-black">30 Days</p>
+                    </div>
+                    <a href="details.html?product=yt_premium" class="px-8 py-4 rounded-2xl bg-white text-[#6e3bff] font-black text-sm hover:bg-[#6e3bff] hover:text-white transition shadow-lg">ORDER</a>
+                </div>
+            </div>
+
+            <div class="status-card p-8 flex flex-col md:flex-row items-center justify-between border-red-500/20 opacity-60">
+                <div class="flex items-center space-x-6">
+                    <div class="text-3xl font-black">03</div>
+                    <div>
+                        <h3 class="text-2xl font-black">Proton Personal</h3>
+                        <p class="text-xs opacity-50 font-bold uppercase tracking-widest"><span class="dot bg-red-500"></span>Out of Stock</p>
+                    </div>
+                </div>
+                <div class="mt-6 md:mt-0 flex items-center space-x-8">
+                    <div class="text-right">
+                        <p class="text-2xl font-black text-white/20">80৳</p>
+                        <p class="text-[10px] opacity-30 uppercase font-black tracking-tighter">Coming Soon</p>
+                    </div>
+                    <button disabled class="px-8 py-4 rounded-2xl bg-white/5 text-white/20 font-black text-sm cursor-not-allowed border border-white/5">CLOSED</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="index.html" class="text-white/40 hover:text-white transition text-xs uppercase tracking-[0.4em]">← Return Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
