@@ -1,0 +1,36 @@
+<div class="min-h-screen w-full flex items-center justify-center p-6" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a);">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <div class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-12 text-center shadow-2xl backdrop-blur-[60px]">
+    <h3 id="product-name" class="text-4xl font-black text-white mb-4">Loading...</h3>
+    <p id="product-desc" class="text-white/60 mb-8">Premium subscription with full access.</p>
+    
+    <div class="my-8 rounded-[35px] bg-[#6e3bff]/20 py-10 text-6xl font-black text-white drop-shadow-[0_0_15px_rgba(110,59,255,0.5)]">
+      <span id="product-price">--</span>৳
+    </div>
+    
+    <a href="https://t.me/darkorb1t" class="block w-full rounded-3xl bg-white py-5 font-black text-[#6e3bff] text-xl transition hover:scale-105 active:scale-95">
+      Order on Telegram
+    </a>
+    
+    <button onclick="history.back()" class="mt-8 text-white/40 hover:text-white transition">← Go Back</button>
+  </div>
+
+  <script>
+    // URL থেকে ডাটা নিয়ে প্রাইজ ও নাম সেট করার জন্য ছোট একটা স্ক্রিপ্ট
+    const params = new URLSearchParams(window.location.search);
+    const product = params.get('product');
+
+    const data = {
+      'surfshark': { name: 'Surfshark VPN', price: '28' },
+      'proton_shared': { name: 'Proton Shared', price: '30' },
+      'yt_premium': { name: 'YouTube Premium', price: '25' }
+    };
+
+    if(data[product]) {
+      document.getElementById('product-name').innerText = data[product].name;
+      document.getElementById('product-price').innerText = data[product].price;
+    }
+  </script>
+</div>
+
