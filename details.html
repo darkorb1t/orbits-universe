@@ -27,42 +27,45 @@
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
+        // Your specific username for direct contact
+        const targetUser = 'Aedm1n'; 
+
         const data = {
             'surfshark': { 
                 name: 'Surfshark VPN', 
                 price: '28', 
                 desc: 'High-speed shared account with global servers for secure browsing.',
-                msg: 'Hello Orbit! I want to take Surfshark VPN (28tk).'
+                msg: 'Hello! I want to take Surfshark VPN (28tk).'
             },
             'pia': { 
                 name: 'PIA VPN', 
                 price: '28', 
                 desc: 'Ultimate anonymity and military-grade encryption for security pros.',
-                msg: 'Hello Orbit! I want to take PIA VPN (28tk).'
+                msg: 'Hello! I want to take PIA VPN (28tk).'
             },
             'proton_shared': { 
                 name: 'Proton Shared', 
                 price: '30', 
                 desc: 'Swiss-based security with 30 days shared premium access.',
-                msg: 'Hello Orbit! I want to take Proton VPN Shared (30tk).'
+                msg: 'Hello! I want to take Proton VPN Shared (30tk).'
             },
             'proton_personal': { 
                 name: 'Proton Personal', 
                 price: '80', 
                 desc: 'Full private account activated on your own personal email for 30 days.',
-                msg: 'Hello Orbit! I want to take Proton VPN Personal (80tk).'
+                msg: 'Hello! I want to take Proton VPN Personal (80tk).'
             },
             'yt_premium': { 
                 name: 'YouTube Premium', 
                 price: '25', 
                 desc: 'Ad-free experience with Background Play. Please send your email after clicking order.',
-                msg: 'Hello Orbit! I want YouTube Premium (25tk). My email is: '
+                msg: 'Hello! I want YouTube Premium (25tk). My email is: '
             },
             'yt_renewable': { 
                 name: 'YT Renewable', 
                 price: '80', 
                 desc: 'Monthly renewable premium on your own account. Ad-free music included.',
-                msg: 'Hello Orbit! I want YouTube Premium Renewable (80tk). My email is: '
+                msg: 'Hello! I want YouTube Premium Renewable (80tk). My email is: '
             }
         };
 
@@ -72,15 +75,14 @@
             document.getElementById('pPrice').innerText = item.price;
             document.getElementById('pDesc').innerText = item.desc;
             
-            // Telegram URL with Message Fix
-            const username = 'Aedm1n'; // Updated Username
+            // Strictly setting the link to @Aedm1n
             const encodedMsg = encodeURIComponent(item.msg);
-            document.getElementById('tgLink').href = `https://t.me/${username}?text=${encodedMsg}`;
+            document.getElementById('tgLink').href = `https://t.me/${targetUser}?text=${encodedMsg}`;
         } else {
             document.getElementById('pName').innerText = "Product Not Found";
             document.getElementById('pDesc').innerText = "Please return to the home page.";
         }
     </script>
 </body>
-  </html>
-  
+</html>
+
