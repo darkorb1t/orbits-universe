@@ -10,13 +10,13 @@
     
     <div class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-12 text-center shadow-2xl backdrop-blur-[60px] text-white">
         <h3 id="pName" class="text-4xl font-black mb-4">Loading...</h3>
-        <p class="text-white/60 mb-8">Premium private subscription with full access.</p>
+        <p id="pDesc" class="text-white/60 mb-8 px-4">Premium private subscription with full access.</p>
         
         <div class="my-8 rounded-[35px] bg-[#6e3bff]/20 py-10 text-6xl font-black drop-shadow-lg">
             <span id="pPrice">--</span>৳
         </div>
         
-        <a href="https://t.me/Aedm1n" class="block w-full rounded-3xl bg-white py-5 font-black text-[#6e3bff] text-xl transition hover:scale-105 active:scale-95">
+        <a id="tgLink" href="https://t.me/Aedm1n" class="block w-full rounded-3xl bg-white py-5 font-black text-[#6e3bff] text-xl transition hover:scale-105 active:scale-95">
             Order on Telegram
         </a>
         
@@ -27,20 +27,59 @@
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
+        // All product data with custom descriptions and telegram messages
         const data = {
-            'surfshark': { name: 'Surfshark VPN', price: '28' },
-            'pia': { name: 'PIA VPN', price: '28' },
-            'proton_shared': { name: 'Proton Shared', price: '30' },
-            'proton_personal': { name: 'Proton Personal', price: '80' },
-            'yt_premium': { name: 'YouTube Premium', price: '25' },
-            'yt_renewable': { name: 'YT Renewable', price: '80' }
+            'surfshark': { 
+                name: 'Surfshark VPN', 
+                price: '28', 
+                desc: 'High-speed shared account with global servers.',
+                msg: 'Hello, I want to take Surfshark VPN.'
+            },
+            'pia': { 
+                name: 'PIA VPN', 
+                price: '28', 
+                desc: 'Ultimate anonymity and secure browsing.',
+                msg: 'Hello, I want to take Private Internet Access VPN.'
+            },
+            'proton_shared': { 
+                name: 'Proton Shared', 
+                price: '30', 
+                desc: '30 Days shared access with Swiss security.',
+                msg: 'Hello, I want to take Proton VPN Shared.'
+            },
+            'proton_personal': { 
+                name: 'Proton Personal', 
+                price: '80', 
+                desc: 'Private account on your own email for 30 days.',
+                msg: 'Hello, I want to take Proton VPN Personal on my email.'
+            },
+            'yt_premium': { 
+                name: 'YouTube Premium', 
+                price: '25', 
+                desc: 'Ad-free experience. Send your email to get family invitation.',
+                msg: 'Hello, I want YouTube Premium for 25tk. My email is: '
+            },
+            'yt_renewable': { 
+                name: 'YT Renewable', 
+                price: '80', 
+                desc: 'Monthly renewable on your own account. Best for long term.',
+                msg: 'Hello, I want YouTube Premium Renewable for 80tk. My email is: '
+            }
         };
 
         if(data[product]) {
-            document.getElementById('pName').innerText = data[product].name;
-            document.getElementById('pPrice').innerText = data[product].price;
+            const item = data[product];
+            document.getElementById('pName').innerText = item.name;
+            document.getElementById('pPrice').innerText = item.price;
+            document.getElementById('pDesc').innerText = item.desc;
+            
+            // Generate Telegram Link with auto-typed message
+            const encodedMsg = encodeURIComponent(item.msg);
+            document.getElementById('tgLink').href = `https://t.me/darkorb1t?text=${encodedMsg}`;
+        } else {
+            document.getElementById('pName').innerText = "Product Not Found";
+            document.getElementById('pDesc').innerText = "Please go back and select a valid product.";
         }
     </script>
 </body>
 </html>
-
