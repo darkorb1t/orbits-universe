@@ -31,17 +31,16 @@
     </div>
 
     <script>
-        // Security: Right Click & Inspect Lock
+        // Security Lock
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.onkeydown = e => { if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) return false; };
 
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
-        // Obfuscated Config
-        const _v = ["NzcyMTU2MDc5ODpBQUVXUnFBWVdXTHZqRVpOcVUtTzRsdm96TXlvWFlLWGlN", "NjI1MDIyMjUyMw=="];
-        const _0xT = atob(_v[0]);
-        const _0xC = atob(_v[1]);
+        // Clean Base64 Strings
+        const _v1 = "NzcyMTU2MDc5ODpBQUVXUnFBWVdXTHZqRVpOcVUtTzRsdm96TXlvWFlLWGlN";
+        const _v2 = "NjI1MDIyMjUyMw==";
 
         const data = {
             'surfshark': { name: 'Surfshark VPN', price: '28', desc: 'High-speed shared account with global servers.' },
@@ -64,27 +63,31 @@
             const c = document.getElementById('userContact').value;
             const n = document.getElementById('pName').innerText;
             const p = document.getElementById('pPrice').innerText;
+            const btn = document.getElementById('sBtn');
 
             if(!t || !c) return alert("Please fill all info!");
 
-            const msg = `🚀 NEW ORDER!\n\nProduct: ${n}\nAmount: ${p}৳\nTrxID: ${t}\nContact: ${c}`;
-            const url = `https://api.telegram.org/bot${_0xT}/sendMessage?chat_id=${_0xC}&text=${encodeURIComponent(msg)}`;
+            btn.innerText = "Sending...";
+            btn.disabled = true;
 
-            document.getElementById('sBtn').innerText = "Sending...";
-            document.getElementById('sBtn').disabled = true;
+            const msg = `🚀 NEW ORDER!\n\nProduct: ${n}\nAmount: ${p}৳\nTrxID: ${t}\nContact: ${c}`;
+            
+            // Re-decoding here to ensure fresh token
+            const url = `https://api.telegram.org/bot${atob(_v1)}/sendMessage?chat_id=${atob(_v2)}&text=${encodeURIComponent(msg)}`;
 
             fetch(url).then(res => {
                 if(res.ok) {
-                    alert("Order Submitted! Redirecting to confirm...");
+                    alert("Order Submitted! Confirming on Telegram...");
                     window.location.href = `https://t.me/Aedm1n?text=${encodeURIComponent("Hi! I ordered " + n + " (" + p + "tk). My TrxID: " + t)}`;
                 } else {
-                    alert("Failed to send. Try again.");
-                    document.getElementById('sBtn').disabled = false;
-                    document.getElementById('sBtn').innerText = "Submit Order";
+                    alert("Failed to send. Check your internet or contact @Aedm1n.");
+                    btn.disabled = false;
+                    btn.innerText = "Submit Order";
                 }
             }).catch(() => {
                 alert("Network Error!");
-                document.getElementById('sBtn').disabled = false;
+                btn.disabled = false;
+                btn.innerText = "Submit Order";
             });
         }
     </script>
