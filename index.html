@@ -23,7 +23,7 @@
         <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
             <h2 class="text-3xl font-black">Surfshark VPN</h2>
             <div class="space-y-4">
-                <button onclick="openFree('Surfshark', 'momxoq@mailbox.in.ua', 'RJR83@RFr2@')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold">Get it FREE</button>
+                <button onclick="openFree('Surfshark', 'momxoq@mailbox.in.ua', 'RJR83@RFr2@')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
                 <a href="details.html?product=surfshark" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
             <h2 class="text-3xl font-black">PIA VPN</h2>
             <div class="space-y-4">
-                <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold">Get it FREE</button>
+                <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
                 <a href="details.html?product=pia" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
             </div>
         </div>
@@ -53,27 +53,27 @@
         <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
             <h2 class="text-3xl font-black">YouTube Premium</h2>
             <div class="pt-10">
-                <a href="details.html?product=yt_premium" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                <a href="details.html?product=yt_premium" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Activate Premium Pack</a>
             </div>
         </div>
 
         <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
             <h2 class="text-3xl font-black text-red-500">YT Renewable</h2>
             <div class="pt-10">
-                <a href="details.html?product=yt_renewable" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                <a href="details.html?product=yt_renewable" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get Renewable Access</a>
             </div>
         </div>
     </div>
 
     <div id="freeModal" class="modal" onclick="closeModal()">
-        <div class="max-w-md w-full rounded-[50px] border border-white/20 bg-white/5 p-12 text-center backdrop-blur-3xl" onclick="event.stopPropagation()">
+        <div class="max-w-md w-full rounded-[50px] border border-white/20 bg-white/5 p-12 text-center backdrop-blur-3xl shadow-2xl" onclick="event.stopPropagation()">
             <h3 class="text-3xl font-black mb-6">🎁 Free Access</h3>
             <div class="bg-black/40 p-6 rounded-3xl font-mono text-left border border-white/5 space-y-2">
                 <p class="text-purple-400">Service: <span id="freeName" class="text-white"></span></p>
                 <p class="text-purple-400">ID: <span id="freeId" class="text-white"></span></p>
                 <p class="text-purple-400">Pass: <span id="freePass" class="text-white"></span></p>
             </div>
-            <button onclick="closeModal()" class="mt-8 text-white/40 underline">Close</button>
+            <button onclick="closeModal()" class="mt-8 text-white/40 hover:text-white transition underline">Close Window</button>
         </div>
     </div>
 
@@ -85,7 +85,9 @@
             document.getElementById('freeModal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
+        
+        // Disable Right Click for security
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
 </html>
-
