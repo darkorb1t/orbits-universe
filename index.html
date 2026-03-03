@@ -12,6 +12,9 @@
         .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
         .btn-status { background: rgba(110, 59, 255, 0.1); border: 1px solid rgba(110, 59, 255, 0.3); color: #6e3bff; transition: 0.3s; }
         .btn-status:hover { background: #6e3bff; color: white; box-shadow: 0 0 20px rgba(110, 59, 255, 0.4); }
+        /* Support Button Styling */
+        .btn-support { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: 0.3s; }
+        .btn-support:hover { background: rgba(255, 255, 255, 0.1); border-color: white; }
     </style>
 </head>
 <body class="p-6 md:p-20 text-white">
@@ -20,9 +23,12 @@
         <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
         <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40 text-xs">Exclusive Digital Giveaways</p>
         
-        <div class="mt-10">
-            <a href="universe.html" class="btn-status inline-block px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
-                🌐 View Live Inventory Status
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <a href="universe.html" class="btn-status px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
+                🌐 View Inventory
+            </a>
+            <a href="support.html" class="btn-support px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
+                🛠️ Help & Support
             </a>
         </div>
     </header>
