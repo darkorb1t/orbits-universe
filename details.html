@@ -5,10 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Order - Orbit's Universe</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; overflow-x: hidden; }
+        
+        #main-content { padding-bottom: 150px; }
+
+        /* Real Floating Glass Nav */
+        .nav-container { position: fixed; bottom: 30px; left: 0; right: 0; z-index: 1500; display: flex; justify-content: center; padding: 0 20px; }
+        .nav-glass { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(25px) saturate(180%); 
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 100px; 
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .nav-item { 
+            color: rgba(255, 255, 255, 0.4); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            width: 80px; 
+            height: 65px; 
+            border-radius: 40px; 
+        }
+        .nav-item i { width: 24px; height: 24px; stroke-width: 2.2px; }
+        .nav-text { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+        
+        .nav-active { 
+            color: white !important; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6" style="background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a);">
+<body class="min-h-screen flex items-center justify-center p-6">
     
-    <div class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-8 md:p-12 text-center shadow-2xl backdrop-blur-[60px] text-white">
+    <div id="main-content" class="w-full max-w-lg rounded-[60px] border border-white/20 bg-white/[0.05] p-8 md:p-12 text-center shadow-2xl backdrop-blur-[60px] text-white">
         <h3 id="pName" class="text-3xl font-black mb-2 tracking-tight">Loading...</h3>
         <p id="pDesc" class="text-white/60 mb-6 px-4 text-sm leading-relaxed">Premium private subscription with full access.</p>
         
@@ -24,7 +63,7 @@
         </div>
 
         <div class="space-y-3 text-left">
-            <input id="trxId" type="text" maxlength="10" placeholder="Enter 10-digit TrxID (e.g. DC21LVVOIL)" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition uppercase">
+            <input id="trxId" type="text" maxlength="10" placeholder="Enter 10-digit TrxID" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition uppercase">
             <input id="userContact" type="text" placeholder="Email or @TelegramUsername" class="w-full p-4 rounded-2xl bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500 transition">
             
             <div id="captchaBox" class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -37,10 +76,31 @@
             </button>
         </div>
         
-        <button onclick="history.back()" class="mt-8 text-white/40 hover:text-white transition text-sm">← Go Back</button>
+        <footer class="mt-10 opacity-20 text-[10px] uppercase tracking-widest">
+            Orbit's Universe © 2026
+        </footer>
+    </div>
+
+    <div class="nav-container">
+        <nav class="nav-glass">
+            <a href="index.html" class="nav-item">
+                <i data-lucide="home"></i>
+                <span class="nav-text">Home</span>
+            </a>
+            <a href="universe.html" class="nav-item">
+                <i data-lucide="layout-grid"></i>
+                <span class="nav-text">Live</span>
+            </a>
+            <a href="support.html" class="nav-item">
+                <i data-lucide="message-circle"></i>
+                <span class="nav-text">Help</span>
+            </a>
+        </nav>
     </div>
 
     <script>
+        lucide.createIcons();
+
         const params = new URLSearchParams(window.location.search);
         const product = params.get('product');
 
@@ -99,15 +159,12 @@
             const botText = `🚀 NEW ORDER!\n\nProduct: ${pName}\nAmount: ${pPrice}৳\nTrxID: ${trx}\nContact: ${contact}`;
             const botUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(botText)}`;
 
-                        fetch(botUrl)
+            fetch(botUrl)
             .then(res => {
                 if(res.ok) {
                     alert("Order Submitted! Redirecting to WhatsApp for confirmation.");
-                    
-                    // WhatsApp Redirect (Using your number: 01611026722)
                     const myNumber = "8801611026722"; 
                     const clientMsg = `Hi Orbit! I have submitted an order for ${pName} (${pPrice}tk). My TrxID is: ${trx}`;
-                    
                     window.location.href = `https://wa.me/${myNumber}?text=${encodeURIComponent(clientMsg)}`;
                 } else {
                     alert("Bot Error! Please contact directly on WhatsApp.");
@@ -122,6 +179,7 @@
                 btn.innerText = "Submit Order";
             });
         }
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
 </html>
