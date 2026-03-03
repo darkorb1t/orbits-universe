@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* High-Res Background & Sharper Fonts */
+        /* High-Res Background & Sharper Rendering */
         body { 
             background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); 
             background-attachment: fixed; 
@@ -18,7 +18,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Vivid Glass Card - Higher Contrast */
+        /* Vivid Glass Card - Higher Contrast for Premium Vibe */
         .status-card { 
             background: rgba(255, 255, 255, 0.04); 
             backdrop-filter: blur(20px); 
@@ -41,7 +41,7 @@
 
         #main-content { padding-bottom: 150px; }
 
-        /* Premium Navigation - Sharper Glass */
+        /* Premium Navigation Styling */
         .nav-container { position: fixed; bottom: 30px; left: 0; right: 0; z-index: 1500; display: flex; justify-content: center; padding: 0 20px; }
         .nav-glass { 
             background: rgba(15, 15, 15, 0.85); 
@@ -57,7 +57,7 @@
         .nav-item { 
             color: rgba(255, 255, 255, 0.4); 
             display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            width: 80px; height: 65px; border-radius: 40px; 
+            width: 80px; height: 65px; border-radius: 40px; transition: 0.3s;
         }
         
         .nav-active { 
@@ -67,7 +67,7 @@
             text-shadow: 0 0 10px rgba(110, 59, 255, 0.5);
         }
 
-        /* Entrance Animation for 10/10 Vibe */
+        /* Entrance Animation */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -88,7 +88,7 @@
 
         <footer class="mt-24 text-center opacity-30 text-[10px] uppercase tracking-widest font-bold">
             Orbit's Universe © 2026
-        </div>
+        </footer>
     </div>
 
     <div class="nav-container">
@@ -102,7 +102,8 @@
     <script>
         lucide.createIcons();
 
-        fetch('inventory.json')
+        // fetch with timestamp to force fresh data from inventory.json
+        fetch('inventory.json?t=' + new Date().getTime())
             .then(res => res.json())
             .then(data => {
                 const list = document.getElementById('inventory-list');
@@ -115,7 +116,7 @@
 
                     const card = document.createElement('div');
                     card.className = `status-card p-10 flex flex-col md:flex-row items-center justify-between fade-in-card ${cardOpacity}`;
-                    card.style.animationDelay = `${index * 0.1}s`; // Staggered entrance for premium feel
+                    card.style.animationDelay = `${index * 0.1}s`; 
                     
                     card.innerHTML = `
                         <div class="flex items-center space-x-8">
@@ -141,6 +142,10 @@
                     `;
                     list.appendChild(card);
                 });
+            })
+            .catch(err => {
+                console.error("Update failed:", err);
+                document.getElementById('inventory-list').innerHTML = '<div class="text-center py-20 font-bold text-red-500">Sync Error! Check JSON file.</div>';
             });
 
         document.addEventListener('contextmenu', e => e.preventDefault());
