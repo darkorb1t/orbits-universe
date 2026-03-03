@@ -22,7 +22,7 @@
         .btn-support { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: 0.3s; }
         .btn-support:hover { background: white; color: black; }
         
-        #main-content { opacity: 0; transition: 1s ease-in; }
+        #main-content { opacity: 0; transition: 0.8s ease-in; }
     </style>
 </head>
 <body class="text-white">
@@ -111,11 +111,19 @@
     </div>
 
     <script>
-        // Splash Screen Function
+        // SMART SPLASH CONTROL
+        window.onload = function() {
+            if (sessionStorage.getItem('divedIn') === 'true') {
+                document.getElementById('splash').style.display = 'none';
+                document.getElementById('main-content').style.opacity = '1';
+            }
+        };
+
         function diveIn() {
             const splash = document.getElementById('splash');
             const content = document.getElementById('main-content');
             
+            sessionStorage.setItem('divedIn', 'true'); // Save state for this session
             splash.style.opacity = '0';
             setTimeout(() => {
                 splash.style.display = 'none';
