@@ -6,77 +6,96 @@
     <title>Orbit's Universe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; }
+        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; overflow-x: hidden; }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; }
         .glass-card:hover { transform: translateY(-10px); border-color: rgba(110, 59, 255, 0.4); }
         .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
+        
+        /* Splash Screen Style */
+        #splash { position: fixed; inset: 0; background: #05000a; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.8s ease-in-out; }
+        .dive-btn { background: linear-gradient(to r, #6e3bff, #a334ff); padding: 15px 40px; border-radius: 100px; font-weight: 900; letter-spacing: 2px; box-shadow: 0 0 30px rgba(110, 59, 255, 0.5); transition: 0.4s; }
+        .dive-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(110, 59, 255, 0.8); }
+
         .btn-status { background: rgba(110, 59, 255, 0.1); border: 1px solid rgba(110, 59, 255, 0.3); color: #6e3bff; transition: 0.3s; }
         .btn-status:hover { background: #6e3bff; color: white; box-shadow: 0 0 20px rgba(110, 59, 255, 0.4); }
-        /* Support Button Styling */
+        
         .btn-support { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: 0.3s; }
-        .btn-support:hover { background: rgba(255, 255, 255, 0.1); border-color: white; }
+        .btn-support:hover { background: white; color: black; }
+        
+        #main-content { opacity: 0; transition: 1s ease-in; }
     </style>
 </head>
-<body class="p-6 md:p-20 text-white">
+<body class="text-white">
 
-    <header class="mb-10 text-center">
-        <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
-        <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40 text-xs">Exclusive Digital Giveaways</p>
-        
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="universe.html" class="btn-status px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
-                🌐 View Inventory
+    <div id="splash">
+        <h1 class="text-4xl md:text-6xl font-black mb-8 text-center tracking-tighter">Welcome to <br><span class="text-[#6e3bff]">Orbit's Universe</span></h1>
+        <button onclick="diveIn()" class="dive-btn uppercase text-sm">Dive to the Universe</button>
+    </div>
+
+    <div id="main-content" class="p-6 md:p-20">
+        <header class="mb-10 text-center">
+            <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
+            <p class="mt-4 font-bold uppercase tracking-[0.4em] opacity-40 text-xs">Exclusive Digital Giveaways</p>
+            
+            <div class="mt-10">
+                <a href="universe.html" class="btn-status inline-block px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
+                    🌐 View Live Inventory Status
+                </a>
+            </div>
+        </header>
+
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+                <h2 class="text-3xl font-black">Surfshark VPN</h2>
+                <div class="space-y-4">
+                    <button onclick="openFree('Surfshark', 'momxoq@mailbox.in.ua', 'RJR83@RFr2@')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
+                    <a href="details.html?product=surfshark" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+                <h2 class="text-3xl font-black">PIA VPN</h2>
+                <div class="space-y-4">
+                    <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
+                    <a href="details.html?product=pia" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px] border-[#6e3bff]/30 bg-[#6e3bff]/5">
+                <h2 class="text-3xl font-black text-[#a334ff]">Proton <span class="block text-sm opacity-50 text-white">(Shared)</span></h2>
+                <div class="pt-10">
+                    <a href="details.html?product=proton_shared" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+                <h2 class="text-3xl font-black text-yellow-500">Proton <span class="block text-sm opacity-50 text-white">(Personal)</span></h2>
+                <div class="pt-10">
+                    <a href="details.html?product=proton_personal" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+                <h2 class="text-3xl font-black">YouTube Premium</h2>
+                <div class="pt-10">
+                    <a href="details.html?product=yt_premium" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Activate Premium Pack</a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
+                <h2 class="text-3xl font-black text-red-500">YT Renewable</h2>
+                <div class="pt-10">
+                    <a href="details.html?product=yt_renewable" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get Renewable Access</a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-20 text-center">
+            <a href="support.html" class="btn-support inline-block px-10 py-4 rounded-full font-black text-xs uppercase tracking-[0.2em] transition">
+                🛠️ Need Help? Visit Support
             </a>
-            <a href="support.html" class="btn-support px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition">
-                🛠️ Help & Support
-            </a>
-        </div>
-    </header>
-
-    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
-            <h2 class="text-3xl font-black">Surfshark VPN</h2>
-            <div class="space-y-4">
-                <button onclick="openFree('Surfshark', 'momxoq@mailbox.in.ua', 'RJR83@RFr2@')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
-                <a href="details.html?product=surfshark" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
-            </div>
-        </div>
-
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
-            <h2 class="text-3xl font-black">PIA VPN</h2>
-            <div class="space-y-4">
-                <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
-                <a href="details.html?product=pia" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
-            </div>
-        </div>
-
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px] border-[#6e3bff]/30 bg-[#6e3bff]/5">
-            <h2 class="text-3xl font-black text-[#a334ff]">Proton <span class="block text-sm opacity-50 text-white">(Shared)</span></h2>
-            <div class="pt-10">
-                <a href="details.html?product=proton_shared" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
-            </div>
-        </div>
-
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
-            <h2 class="text-3xl font-black text-yellow-500">Proton <span class="block text-sm opacity-50 text-white">(Personal)</span></h2>
-            <div class="pt-10">
-                <a href="details.html?product=proton_personal" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
-            </div>
-        </div>
-
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
-            <h2 class="text-3xl font-black">YouTube Premium</h2>
-            <div class="pt-10">
-                <a href="details.html?product=yt_premium" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Activate Premium Pack</a>
-            </div>
-        </div>
-
-        <div class="glass-card p-10 flex flex-col justify-between min-h-[400px]">
-            <h2 class="text-3xl font-black text-red-500">YT Renewable</h2>
-            <div class="pt-10">
-                <a href="details.html?product=yt_renewable" class="block w-full text-center py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get Renewable Access</a>
-            </div>
-        </div>
+            <p class="mt-8 opacity-20 text-[10px] uppercase tracking-widest">Orbit's Universe © 2026</p>
+        </footer>
     </div>
 
     <div id="freeModal" class="modal" onclick="closeModal()">
@@ -92,6 +111,18 @@
     </div>
 
     <script>
+        // Splash Screen Function
+        function diveIn() {
+            const splash = document.getElementById('splash');
+            const content = document.getElementById('main-content');
+            
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+                content.style.opacity = '1';
+            }, 800);
+        }
+
         function openFree(name, id, pass) {
             document.getElementById('freeName').innerText = name;
             document.getElementById('freeId').innerText = id;
@@ -100,7 +131,6 @@
         }
         function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
         
-        // Security Lock
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
