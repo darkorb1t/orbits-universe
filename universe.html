@@ -91,28 +91,32 @@
             .then(response => response.json())
             .then(data => {
                 const list = document.getElementById('inventory-list');
-                list.innerHTML = ''; // Clear loading placeholder
+                list.innerHTML = ''; 
 
                 data.forEach(item => {
+                    // Auto-Logic for Status and Indicator
+                    const statusText = item.status ? "Active & Ready" : "Out of Stock";
+                    const dotClass = item.status ? "bg-green-500 shadow-[0_0_10px_#22c55e]" : "bg-red-500 shadow-[0_0_10px_#ef4444]";
+                    const cardOpacity = item.status ? "" : "opacity-60 grayscale-[0.3]";
+
                     const card = document.createElement('div');
-                    // Add lower opacity and specific border for out-of-stock items
-                    card.className = `status-card p-8 flex flex-col md:flex-row items-center justify-between ${!item.status ? 'opacity-60 border-red-500/20' : ''}`;
+                    card.className = `status-card p-8 flex flex-col md:flex-row items-center justify-between transition-all ${cardOpacity}`;
                     
                     card.innerHTML = `
                         <div class="flex items-center space-x-6">
                             <div class="text-3xl font-black text-white/20">${item.id}</div>
                             <div>
                                 <h3 class="text-2xl font-black">${item.name}</h3>
-                                <p class="text-xs opacity-50 font-bold uppercase tracking-widest">
-                                    <span class="dot ${item.status ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-red-500'}"></span>
-                                    ${item.statusText}
+                                <p class="text-xs opacity-70 font-bold uppercase tracking-widest flex items-center">
+                                    <span class="dot ${dotClass}"></span>
+                                    ${statusText}
                                 </p>
                             </div>
                         </div>
                         <div class="mt-6 md:mt-0 flex items-center space-x-8">
                             <div class="text-right">
                                 <p class="text-2xl font-black ${item.status ? 'text-purple-400' : 'text-white/20'}">${item.price}৳</p>
-                                <p class="text-[10px] opacity-30 uppercase font-black">${item.duration}</p>
+                                <p class="text-[10px] opacity-30 uppercase font-black tracking-tighter">${item.duration}</p>
                             </div>
                             ${item.status 
                                 ? `<a href="${item.link}" class="px-8 py-4 rounded-2xl bg-white text-[#6e3bff] font-black text-sm hover:bg-[#6e3bff] hover:text-white transition shadow-lg">ORDER</a>`
