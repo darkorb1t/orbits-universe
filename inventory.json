@@ -1,0 +1,48 @@
+[
+  {
+    "id": "01",
+    "name": "Surfshark VPN",
+    "status": true,
+    "statusText": "Active & Ready",
+    "price": "28",
+    "duration": "7 Days Access",
+    "link": "details.html?product=surfshark"
+  },
+  {
+    "id": "02",
+    "name": "YouTube Premium",
+    "status": true,
+    "statusText": "Family Invite Only",
+    "price": "25",
+    "duration": "30 Days",
+    "link": "details.html?product=yt_premium"
+  },
+  {
+    "id": "03",
+    "name": "YT Renewable",
+    "status": true,
+    "statusText": "Instant Activation",
+    "price": "80",
+    "duration": "Monthly Pack",
+    "link": "details.html?product=yt_renewable"
+  },
+  {
+    "id": "04",
+    "name": "PIA VPN",
+    "status": false,
+    "statusText": "Out of Stock",
+    "price": "28",
+    "duration": "Restocking",
+    "link": "#"
+  },
+  {
+    "id": "05",
+    "name": "Proton Personal",
+    "status": false,
+    "statusText": "Out of Stock",
+    "price": "80",
+    "duration": "Coming Soon",
+    "link": "#"
+  }
+]
+
