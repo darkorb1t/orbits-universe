@@ -7,47 +7,95 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: sans-serif; color: white; overflow-x: hidden; }
-        .status-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.08); transition: 0.4s; }
-        .status-card:hover { border-color: #6e3bff; transform: scale(1.02); }
-        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        /* High-Res Background & Sharper Fonts */
+        body { 
+            background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); 
+            background-attachment: fixed; 
+            min-height: 100vh; 
+            font-family: 'Inter', sans-serif; 
+            color: white; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Vivid Glass Card - Higher Contrast */
+        .status-card { 
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px; 
+            border: 1px solid rgba(255, 255, 255, 0.12); 
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .status-card:hover { 
+            border-color: rgba(110, 59, 255, 0.6); 
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(110, 59, 255, 0.15);
+        }
+
+        .dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
 
         #main-content { padding-bottom: 150px; }
 
-        /* Floating Nav Styling */
+        /* Premium Navigation - Sharper Glass */
         .nav-container { position: fixed; bottom: 30px; left: 0; right: 0; z-index: 1500; display: flex; justify-content: center; padding: 0 20px; }
-        .nav-glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; padding: 10px; display: flex; gap: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .nav-item { color: rgba(255, 255, 255, 0.4); transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 80px; height: 65px; border-radius: 40px; }
-        .nav-item i { width: 24px; height: 24px; stroke-width: 2.2px; }
-        .nav-text { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-        .nav-active { color: white !important; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-glass { 
+            background: rgba(15, 15, 15, 0.85); 
+            backdrop-filter: blur(25px) saturate(200%); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 100px; 
+            padding: 10px;
+            display: flex;
+            gap: 12px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+        }
         
-        /* Smooth Loading Animation */
-        #inventory-list { transition: opacity 0.5s ease-in-out; }
+        .nav-item { 
+            color: rgba(255, 255, 255, 0.4); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            width: 80px; height: 65px; border-radius: 40px; 
+        }
+        
+        .nav-active { 
+            color: white !important; 
+            background: linear-gradient(145deg, rgba(110, 59, 255, 0.3), rgba(163, 52, 255, 0.1));
+            border: 1px solid rgba(110, 59, 255, 0.4);
+            text-shadow: 0 0 10px rgba(110, 59, 255, 0.5);
+        }
+
+        /* Entrance Animation for 10/10 Vibe */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-card { animation: fadeInUp 0.6s ease-out forwards; }
     </style>
 </head>
 <body class="p-6 md:p-20">
 
     <div id="main-content" class="max-w-4xl mx-auto">
         <header class="mb-16 text-center">
-            <h1 class="text-5xl font-black tracking-tighter drop-shadow-[0_0_20px_rgba(110,59,255,0.6)] md:text-7xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
-            <p class="mt-4 font-bold uppercase tracking-[0.3em] opacity-40 text-xs text-purple-200">Real-Time Service Inventory</p>
+            <h1 class="text-6xl font-black tracking-tighter drop-shadow-[0_0_30px_rgba(110,59,255,0.4)] md:text-8xl">Orbit's <span class="text-[#6e3bff]">Universe</span></h1>
+            <p class="mt-4 font-bold uppercase tracking-[0.5em] opacity-50 text-[10px] text-purple-300">Live Service Inventory</p>
         </header>
 
-        <div id="inventory-list" class="grid grid-cols-1 gap-6 min-h-[400px] opacity-0">
+        <div id="inventory-list" class="grid grid-cols-1 gap-8 min-h-[500px]">
             </div>
 
-        <footer class="mt-20 text-center opacity-20 text-[10px] uppercase tracking-widest">
+        <footer class="mt-24 text-center opacity-30 text-[10px] uppercase tracking-widest font-bold">
             Orbit's Universe © 2026
-        </footer>
+        </div>
     </div>
 
     <div class="nav-container">
         <nav class="nav-glass">
-            <a href="index.html" class="nav-item"><i data-lucide="home"></i><span class="nav-text">Home</span></a>
-            <a href="universe.html" class="nav-item nav-active"><i data-lucide="layout-grid"></i><span class="nav-text">Live</span></a>
-            <a href="support.html" class="nav-item"><i data-lucide="message-circle"></i><span class="nav-text">Help</span></a>
+            <a href="index.html" class="nav-item"><i data-lucide="home"></i><span class="text-[9px] font-black uppercase mt-1">Home</span></a>
+            <a href="universe.html" class="nav-item nav-active"><i data-lucide="layout-grid"></i><span class="text-[9px] font-black uppercase mt-1">Live</span></a>
+            <a href="support.html" class="nav-item"><i data-lucide="message-circle"></i><span class="text-[9px] font-black uppercase mt-1">Help</span></a>
         </nav>
     </div>
 
@@ -60,47 +108,42 @@
                 const list = document.getElementById('inventory-list');
                 list.innerHTML = ''; 
 
-                data.forEach(item => {
+                data.forEach((item, index) => {
                     const statusText = item.status ? "Active & Ready" : "Out of Stock";
-                    const dotClass = item.status ? "bg-green-500 shadow-[0_0_10px_#22c55e]" : "bg-red-500 shadow-[0_0_10px_#ef4444]";
-                    const cardOpacity = item.status ? "" : "opacity-60 grayscale-[0.3]";
+                    const dotClass = item.status ? "bg-green-500 shadow-[0_0_15px_#22c55e]" : "bg-red-500 shadow-[0_0_15px_#ef4444]";
+                    const cardOpacity = item.status ? "" : "opacity-50 grayscale-[0.2]";
 
                     const card = document.createElement('div');
-                    card.className = `status-card p-8 flex flex-col md:flex-row items-center justify-between transition-all ${cardOpacity}`;
+                    card.className = `status-card p-10 flex flex-col md:flex-row items-center justify-between fade-in-card ${cardOpacity}`;
+                    card.style.animationDelay = `${index * 0.1}s`; // Staggered entrance for premium feel
                     
                     card.innerHTML = `
-                        <div class="flex items-center space-x-6">
-                            <div class="text-3xl font-black text-white/20">${item.id}</div>
+                        <div class="flex items-center space-x-8">
+                            <div class="text-4xl font-black text-white/10 italic">${item.id}</div>
                             <div>
-                                <h3 class="text-2xl font-black">${item.name}</h3>
-                                <p class="text-xs opacity-70 font-bold uppercase tracking-widest flex items-center">
+                                <h3 class="text-3xl font-black tracking-tight">${item.name}</h3>
+                                <p class="text-[11px] font-black uppercase tracking-[0.2em] mt-2 flex items-center ${item.status ? 'text-green-400/80' : 'text-red-400/80'}">
                                     <span class="dot ${dotClass}"></span>
                                     ${statusText}
                                 </p>
                             </div>
                         </div>
-                        <div class="mt-6 md:mt-0 flex items-center space-x-8">
+                        <div class="mt-8 md:mt-0 flex items-center space-x-10">
                             <div class="text-right">
-                                <p class="text-2xl font-black ${item.status ? 'text-purple-400' : 'text-white/20'}">${item.price}৳</p>
-                                <p class="text-[10px] opacity-30 uppercase font-black tracking-tighter">${item.duration}</p>
+                                <p class="text-3xl font-black ${item.status ? 'text-white' : 'text-white/20'}">${item.price}৳</p>
+                                <p class="text-[10px] opacity-40 uppercase font-black tracking-widest mt-1">${item.duration}</p>
                             </div>
                             ${item.status 
-                                ? `<a href="${item.link}" class="px-8 py-4 rounded-2xl bg-white text-[#6e3bff] font-black text-sm hover:bg-[#6e3bff] hover:text-white transition shadow-lg">ORDER</a>`
-                                : `<button disabled class="px-8 py-4 rounded-2xl bg-white/5 text-white/20 font-black text-sm cursor-not-allowed border border-white/5 uppercase">Closed</button>`
+                                ? `<a href="${item.link}" class="px-10 py-5 rounded-3xl bg-white text-black font-black text-xs uppercase tracking-widest hover:bg-[#6e3bff] hover:text-white transition-all duration-300 shadow-[0_10px_30px_rgba(255,255,255,0.2)]">ORDER</a>`
+                                : `<button disabled class="px-10 py-5 rounded-3xl bg-white/5 text-white/20 font-black text-xs uppercase tracking-widest border border-white/5">CLOSED</button>`
                             }
                         </div>
                     `;
                     list.appendChild(card);
                 });
-                // Data load howar por smooth fade-in
-                list.style.opacity = '1'; 
-            })
-            .catch(error => {
-                document.getElementById('inventory-list').innerHTML = '<div class="text-center text-red-500 font-bold">Failed to load inventory.</div>';
-                document.getElementById('inventory-list').style.opacity = '1';
             });
 
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('contextmenu', e => e.preventDefault());
     </script>
 </body>
 </html>
