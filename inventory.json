@@ -2,7 +2,7 @@
   {
     "id": "01",
     "name": "Surfshark VPN",
-    "status": true,
+    "status": false,
     "price": "28",
     "duration": "7 Days Access",
     "link": "details.html?product=surfshark"
@@ -26,7 +26,7 @@
   {
     "id": "04",
     "name": "PIA VPN",
-    "status": false,
+    "status": true,
     "price": "28",
     "duration": "Restocking",
     "link": "#"
