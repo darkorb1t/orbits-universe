@@ -32,13 +32,13 @@
         
         #main-content { opacity: 0; transition: 0.8s ease-in; padding-bottom: 150px; }
 
-        /* Ultra Transparent 40px Blur Nav */
+        /* Ultra Transparent 40px Blur Nav - Unified across all pages */
         .nav-container { position: fixed; bottom: 30px; left: 0; right: 0; z-index: 1500; display: flex; justify-content: center; padding: 0 20px; }
         .nav-glass { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(40px) saturate(200%); 
-            -webkit-backdrop-filter: blur(40px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.05); 
+            background: rgba(255, 255, 255, 0.03) !important; 
+            backdrop-filter: blur(40px) saturate(200%) !important; 
+            -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important; 
             border-radius: 100px; 
             padding: 10px;
             display: flex;
@@ -158,9 +158,38 @@
 
     <script>
         lucide.createIcons();
-        window.onload = function() { if (sessionStorage.getItem('divedIn') === 'true') { document.getElementById('splash').style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; } };
-        function diveIn() { sessionStorage.setItem('divedIn', 'true'); document.getElementById('splash').style.opacity = '0'; setTimeout(() => { document.getElementById('splash').style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 800); }
-        function openFree(name, id, pass) { document.getElementById('freeName').innerText = name; document.getElementById('freeId').innerText = id; document.getElementById('freePass').innerText = pass; document.getElementById('freeModal').style.display = 'flex'; }
+
+        // SPLASH LOGIC: ব্যাক বাটন চাপলে রিপিট হবে না
+        window.onload = function() {
+            const splash = document.getElementById('splash');
+            const main = document.getElementById('main-content');
+            
+            if (sessionStorage.getItem('divedIn') === 'true') {
+                splash.style.display = 'none';
+                main.style.opacity = '1';
+            } else {
+                splash.style.display = 'flex';
+                main.style.opacity = '0';
+            }
+        };
+
+        function diveIn() {
+            sessionStorage.setItem('divedIn', 'true');
+            const splash = document.getElementById('splash');
+            const main = document.getElementById('main-content');
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.style.opacity = '1';
+            }, 800);
+        }
+
+        function openFree(name, id, pass) {
+            document.getElementById('freeName').innerText = name;
+            document.getElementById('freeId').innerText = id;
+            document.getElementById('freePass').innerText = pass;
+            document.getElementById('freeModal').style.display = 'flex';
+        }
         function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
