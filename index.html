@@ -6,24 +6,24 @@
     <title>Orbit's Universe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         body { background: radial-gradient(circle at top right, #1a0b2e, #0d021a, #05000a); background-attachment: fixed; min-height: 100vh; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         
-        .premium-font { font-family: 'Outfit', sans-serif; }
+        .premium-font { font-family: 'Outfit', sans-serif; font-style: italic; }
 
         .glass-card { 
-            background: rgba(255, 255, 255, 0.03); 
+            background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(40px); 
             border-radius: 50px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
-        .glass-card:hover { transform: translateY(-12px); border-color: rgba(110, 59, 255, 0.5); background: rgba(255, 255, 255, 0.05); }
+        .glass-card:hover { transform: translateY(-10px); border-color: rgba(110, 59, 255, 0.4); }
         
-        /* App Logos Styling */
-        .app-logo { height: 40px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; margin-top: 10px; }
+        /* App Logos Styling - High Contrast White */
+        .app-logo { height: 50px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.95; margin-top: 15px; }
 
         .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
         
@@ -32,29 +32,30 @@
         
         #main-content { opacity: 0; transition: 0.8s ease-in; padding-bottom: 150px; }
 
-        /* Floating Glass Nav */
+        /* Ultra Transparent 40px Blur Nav */
         .nav-container { position: fixed; bottom: 30px; left: 0; right: 0; z-index: 1500; display: flex; justify-content: center; padding: 0 20px; }
         .nav-glass { 
-            background: rgba(15, 15, 15, 0.85); 
-            backdrop-filter: blur(25px) saturate(200%); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(40px) saturate(200%); 
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
             border-radius: 100px; 
             padding: 10px;
             display: flex;
             gap: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .nav-item { color: rgba(255, 255, 255, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; width: 80px; height: 65px; border-radius: 40px; transition: 0.3s; }
+        .nav-item { color: rgba(255, 255, 255, 0.3); transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 80px; height: 65px; border-radius: 40px; }
         .nav-item i { width: 24px; height: 24px; stroke-width: 2.2px; }
         .nav-text { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
         
-        .nav-active { color: white !important; background: linear-gradient(145deg, rgba(110, 59, 255, 0.3), rgba(163, 52, 255, 0.1)); border: 1px solid rgba(110, 59, 255, 0.4); text-shadow: 0 0 10px rgba(110, 59, 255, 0.5); }
+        .nav-active { color: white !important; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
 <body class="text-white">
 
     <div id="splash">
-        <h1 class="premium-font text-5xl md:text-7xl font-black mb-8 text-center tracking-tighter">Welcome to <br><span class="text-[#6e3bff]">Orbit's Universe</span></h1>
+        <h1 class="premium-font text-5xl md:text-7xl font-black mb-8 text-center tracking-tighter italic">Welcome to <br><span class="text-[#6e3bff]">Orbit's Universe</span></h1>
         <button onclick="diveIn()" class="dive-btn uppercase text-sm">Dive to the Universe</button>
     </div>
 
@@ -68,8 +69,8 @@
             
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-3xl font-black italic">Surfshark VPN</h2>
-                    <img src="https://auth.surfshark.com/client/assets/logos/surfshark-mono-white.svg" class="app-logo" alt="Surfshark">
+                    <h2 class="premium-font text-3xl font-black">Surfshark VPN</h2>
+                    <img src="https://auth.surfshark.com/client/assets/logos/surfshark-mono-white.svg" class="app-logo">
                 </div>
                 <div class="w-full space-y-4 pt-6">
                     <button onclick="openFree('Surfshark', 'momxoq@mailbox.in.ua', 'RJR83@RFr2@')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
@@ -79,28 +80,28 @@
 
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-2xl font-black italic">YouTube Premium<br><span class="text-sm opacity-50">(Non-renewable)</span></h2>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" class="app-logo scale-150" alt="YouTube">
+                    <h2 class="premium-font text-2xl font-black">YouTube Premium<br><span class="text-sm opacity-50">(Non-renewable)</span></h2>
+                    <img src="https://darkorb1t.github.io/orbits-universe/ytsvg.svg" class="app-logo">
                 </div>
                 <div class="w-full pt-6">
-                    <a href="details.html?product=yt_premium" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg uppercase tracking-widest text-xs">Activate 25৳ Pack</a>
+                    <a href="details.html?product=yt_premium" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
                 </div>
             </div>
 
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-2xl font-black italic">YouTube Premium<br><span class="text-sm opacity-50">(Renewable)</span></h2>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" class="app-logo scale-150" alt="YouTube">
+                    <h2 class="premium-font text-2xl font-black">YouTube Premium<br><span class="text-sm opacity-50">(Renewable)</span></h2>
+                    <img src="https://darkorb1t.github.io/orbits-universe/ytsvg.svg" class="app-logo">
                 </div>
                 <div class="w-full pt-6">
-                    <a href="details.html?product=yt_renewable" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get Renewable Access</a>
+                    <a href="details.html?product=yt_renewable" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
                 </div>
             </div>
 
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-3xl font-black italic">Proton VPN<br><span class="text-sm opacity-50">(Shared)</span></h2>
-                    <img src="https://proton.me/static/images/logos/proton-logo-white.svg" class="app-logo" alt="Proton">
+                    <h2 class="premium-font text-3xl font-black">Proton VPN<br><span class="text-sm opacity-50">(Shared)</span></h2>
+                    <img src="https://proton.me/static/images/logos/proton-logo-white.svg" class="app-logo">
                 </div>
                 <div class="w-full pt-6">
                     <a href="details.html?product=proton_shared" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
@@ -109,8 +110,8 @@
 
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-3xl font-black italic">Proton VPN<br><span class="text-sm opacity-50">(Personal)</span></h2>
-                    <img src="https://proton.me/static/images/logos/proton-logo-white.svg" class="app-logo" alt="Proton">
+                    <h2 class="premium-font text-3xl font-black">Proton VPN<br><span class="text-sm opacity-50">(Personal)</span></h2>
+                    <img src="https://proton.me/static/images/logos/proton-logo-white.svg" class="app-logo">
                 </div>
                 <div class="w-full pt-6">
                     <a href="details.html?product=proton_personal" class="block w-full py-4 rounded-3xl bg-gradient-to-r from-[#6e3bff] to-[#a334ff] font-black shadow-lg">Get a Private Account</a>
@@ -119,8 +120,8 @@
 
             <div class="glass-card p-12 flex flex-col items-center text-center space-y-6">
                 <div class="flex flex-col items-center">
-                    <h2 class="premium-font text-3xl font-black italic">PIA VPN</h2>
-                    <i data-lucide="shield-check" class="w-12 h-12 text-white/80 mt-2"></i>
+                    <h2 class="premium-font text-3xl font-black">PIA VPN</h2>
+                    <img src="https://darkorb1t.github.io/orbits-universe/piasvg.svg" class="app-logo">
                 </div>
                 <div class="w-full space-y-4 pt-6">
                     <button onclick="openFree('PIA', 'pia_member@trial.com', 'pia9900')" class="w-full py-4 rounded-3xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition">Get it FREE</button>
@@ -137,18 +138,9 @@
 
     <div class="nav-container">
         <nav class="nav-glass">
-            <a href="index.html" class="nav-item nav-active">
-                <i data-lucide="home"></i>
-                <span class="nav-text">Home</span>
-            </a>
-            <a href="universe.html" class="nav-item">
-                <i data-lucide="layout-grid"></i>
-                <span class="nav-text">Live</span>
-            </a>
-            <a href="support.html" class="nav-item">
-                <i data-lucide="message-circle"></i>
-                <span class="nav-text">Help</span>
-            </a>
+            <a href="index.html" class="nav-item nav-active"><i data-lucide="home"></i><span class="nav-text">Home</span></a>
+            <a href="universe.html" class="nav-item"><i data-lucide="layout-grid"></i><span class="nav-text">Live</span></a>
+            <a href="support.html" class="nav-item"><i data-lucide="message-circle"></i><span class="nav-text">Help</span></a>
         </nav>
     </div>
 
@@ -166,29 +158,9 @@
 
     <script>
         lucide.createIcons();
-
-        window.onload = function() {
-            if (sessionStorage.getItem('divedIn') === 'true') {
-                document.getElementById('splash').style.display = 'none';
-                document.getElementById('main-content').style.opacity = '1';
-            }
-        };
-
-        function diveIn() {
-            sessionStorage.setItem('divedIn', 'true');
-            document.getElementById('splash').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('splash').style.display = 'none';
-                document.getElementById('main-content').style.opacity = '1';
-            }, 800);
-        }
-
-        function openFree(name, id, pass) {
-            document.getElementById('freeName').innerText = name;
-            document.getElementById('freeId').innerText = id;
-            document.getElementById('freePass').innerText = pass;
-            document.getElementById('freeModal').style.display = 'flex';
-        }
+        window.onload = function() { if (sessionStorage.getItem('divedIn') === 'true') { document.getElementById('splash').style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; } };
+        function diveIn() { sessionStorage.setItem('divedIn', 'true'); document.getElementById('splash').style.opacity = '0'; setTimeout(() => { document.getElementById('splash').style.display = 'none'; document.getElementById('main-content').style.opacity = '1'; }, 800); }
+        function openFree(name, id, pass) { document.getElementById('freeName').innerText = name; document.getElementById('freeId').innerText = id; document.getElementById('freePass').innerText = pass; document.getElementById('freeModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('freeModal').style.display = 'none'; }
         document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
